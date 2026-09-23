@@ -45,8 +45,8 @@ function renderHeader() {
 }
 
 function updateCartCount() {
-  const el = document.getElementById("cart-count");
-  if (el) el.textContent = window.CartService.getTotalItems();
+  const count = window.CartService.getTotalItems();
+  document.querySelectorAll(".cart-count").forEach((el) => { el.textContent = count; });
 }
 
 function renderFooter() {

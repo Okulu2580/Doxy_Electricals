@@ -33,6 +33,15 @@ function renderCartDrawer() {
 }
 
 function ensureCartDrawerMarkup() {
+  if (!document.querySelector(".floating-cart")) {
+    document.body.insertAdjacentHTML("beforeend", `
+      <button class="floating-cart cart-btn" type="button" aria-label="View cart" title="View cart">
+        <span class="floating-cart-icon" aria-hidden="true">🛒</span>
+        <span class="floating-cart-label">Cart</span>
+        <span class="cart-count floating-cart-count" id="floating-cart-count">0</span>
+      </button>
+    `);
+  }
   if (document.getElementById("cart-drawer")) return;
   document.body.insertAdjacentHTML("beforeend", `
     <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">

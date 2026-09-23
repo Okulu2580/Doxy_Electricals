@@ -34,6 +34,19 @@ function renderDoxyCatalogCards() {
   `).join("");
 }
 
+function showDoxyCategoryIndex() {
+  const heading = document.querySelector(".catalog-heading");
+  const grid = document.getElementById("catalog-category-grid");
+  const panel = document.getElementById("subcategory-panel");
+  if (heading) heading.hidden = false;
+  if (grid) grid.hidden = false;
+  if (panel) {
+    panel.hidden = true;
+    panel.innerHTML = "";
+    panel.removeAttribute("data-category-id");
+  }
+}
+
 function renderDoxyProduct(product) {
   const productRecord = window.ProductService.getProduct(product.id);
   const liveProduct = productRecord || product;
@@ -63,12 +76,16 @@ function renderDoxySubcategoryPanel(categoryId) {
   const category = window.DOXY_CATALOG.find((item) => item.id === categoryId);
   const panel = document.getElementById("subcategory-panel");
   if (!category || !panel) return;
+  const heading = document.querySelector(".catalog-heading");
+  const grid = document.getElementById("catalog-category-grid");
+  if (heading) heading.hidden = true;
+  if (grid) grid.hidden = true;
   panel.hidden = false;
   panel.dataset.categoryId = categoryId;
   panel.innerHTML = `
     <div class="catalog-panel-heading">
       <div><span class="eyebrow">${category.name}</span><h3>Choose a subcategory</h3></div>
-      <button class="icon-btn catalog-close-button" type="button" aria-label="Close products panel">×</button>
+      <button class="btn btn-outline btn-sm catalog-back-button" type="button">Back to categories</button>
     </div>
     <div class="subcategory-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       ${category.subcategories.map((subcategory, index) => `
@@ -90,9 +107,22 @@ function renderDoxySubcategoryPanel(categoryId) {
   };
 
   panel.querySelectorAll(".subcategory-button").forEach((button) => button.addEventListener("click", () => selectSubcategory(button.dataset.subcategoryIndex)));
-  panel.querySelector(".catalog-close-button").addEventListener("click", () => { panel.hidden = true; });
+  panel.querySelector(".catalog-back-button").addEventListener("click", () => {
+    if (history.state && history.state.categoryId) history.back();
+    else {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+      showDoxyCategoryIndex();
+    }
+  });
   selectSubcategory(0);
-  panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  panel.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function openDoxyCategory(categoryId, updateHistory = true) {
+  const category = window.DOXY_CATALOG.find((item) => item.id === categoryId);
+  if (!category) return;
+  if (updateHistory) history.pushState({ categoryId }, "", `#category=${categoryId}`);
+  renderDoxySubcategoryPanel(categoryId);
 }
 
 function addToCart(id) {
@@ -112,10 +142,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!root) return;
   root.addEventListener("click", (event) => {
     const categoryButton = event.target.closest(".catalog-view-button");
-    if (categoryButton) renderDoxySubcategoryPanel(categoryButton.dataset.categoryId);
+    if (categoryButton) openDoxyCategory(categoryButton.dataset.categoryId);
     const addButton = event.target.closest(".catalog-add-button");
     if (addButton) addToCart(addButton.dataset.productId);
   });
+  window.addEventListener("popstate", () => {
+    const categoryId = new URLSearchParams(window.location.hash.replace(/^#/, "")).get("category");
+    if (categoryId) renderDoxySubcategoryPanel(categoryId);
+    else showDoxyCategoryIndex();
+  });
+  const initialCategory = new URLSearchParams(window.location.hash.replace(/^#/, "")).get("category");
+  if (initialCategory) renderDoxySubcategoryPanel(initialCategory);
 });
 
 document.addEventListener("products:changed", () => {
