@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | Doxy Electricals</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="admin-body">
+
+<video id="background-video" autoplay loop muted playsinline aria-hidden="true">
+  <source src="../assets/spark-bg.mp4" type="video/mp4">
+</video>
+<div class="background-video-overlay" aria-hidden="true"></div>
+
+<!-- ============ LOGIN SCREEN ============ -->
+<div class="admin-login-wrap" id="login-screen">
+  <div class="admin-login-card">
+    <h1>⚡ Doxy Admin</h1>
+    <p class="subtitle">Sign in to manage your store.</p>
+    <form id="login-form">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="login-username" autocomplete="username" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-password" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Log In</button>
+      <p class="login-error" id="login-error">Incorrect username or password.</p>
+    </form>
+    <div class="demo-note">
+      <strong>Demo authentication only.</strong> This login is for development/demo purposes and stores a flag in your browser — it is <strong>not secure</strong>. Replace it with Supabase Auth, Firebase Auth, or similar before going live.<br><br>
+      Demo login: <strong>admin</strong> / <strong>admin123</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DASHBOARD SHELL ============ -->
+<div class="admin-shell" id="admin-shell" style="display:none;">
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="brand">⚡ Doxy Admin</div>
+    <nav class="admin-nav" id="admin-nav">
+      <button data-view="dashboard" class="active">📊 Dashboard</button>
+      <button data-view="products">📦 Products</button>
+      <button data-view="categories">🗂️ Categories</button>
+      <button data-view="inventory">📋 Inventory</button>
+      <button data-view="orders">🧾 Orders</button>
+      <button data-view="store-settings">🏬 Store Settings</button>
+      <button data-view="website-settings">🌐 Website Settings</button>
+    </nav>
+    <div class="admin-logout">
+      <button class="btn btn-outline btn-sm" style="color:#fff;border-color:rgba(255,255,255,.3);" id="logout-btn">Logout</button>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <button class="mobile-menu-btn" id="mobile-menu-btn">☰ Menu</button>
+      <h2 id="view-title">Dashboard</h2>
+      <a href="../index.html" target="_blank" class="btn btn-outline btn-sm">View Storefront ↗</a>
+    </div>
+    <div id="view-mount"></div>
+  </main>
+</div>
+
+<!-- Generic modal used by products/categories/orders forms -->
+<div class="modal-overlay" id="admin-modal">
+  <div class="modal-box" id="admin-modal-box"></div>
+</div>
+
+<script>window.ADMIN_READ_ONLY = true; window.ADMIN_CAN_MANAGE_INVENTORY = true;</script>
+<script src="../doxy_catalog/catalog-data.js"></script>
+<script src="../js/services/productService.js"></script>
+<script src="../doxy_catalog/catalog-service.js"></script>
+<script src="../js/services/categoryService.js"></script>
+<script src="../js/services/cartService.js"></script>
+<script src="../js/services/orderService.js"></script>
+<script src="../js/services/settingsService.js"></script>
+<script src="../js/services/authService.js"></script>
+<script src="../js/whatsapp.js"></script>
+<script src="js/admin-auth.js"></script>
+<script src="js/admin-products.js"></script>
+<script src="js/admin-categories.js"></script>
+<script src="js/admin-inventory.js"></script>
+<script src="js/admin-orders.js"></script>
+<script src="js/admin-settings.js"></script>
+<script src="js/admin-app.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart | Doxy Electricals</title>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<video id="background-video" autoplay loop muted playsinline aria-hidden="true">
+  <source src="./assets/spark-bg.mp4" type="video/mp4">
+</video>
+<div class="background-video-overlay" aria-hidden="true"></div>
+
+<header id="site-header"></header>
+
+<div class="page-header">
+  <div class="container"><h1>Your Cart</h1></div>
+</div>
+
+<main class="container section" style="padding-top:20px;">
+  <div class="cart-layout">
+    <div id="cart-items-mount"></div>
+
+    <aside class="cart-summary" id="cart-summary-mount"></aside>
+  </div>
+</main>
+
+<!-- Optional order info modal -->
+<div class="modal-overlay" id="order-info-modal">
+  <div class="modal-box">
+    <h3>A Few Details (Optional)</h3>
+    <p style="color:var(--grey-mid);font-size:13px;margin-top:-10px;">This helps us serve you faster on WhatsApp. You can skip this if you prefer.</p>
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" id="oi-name" placeholder="e.g. John Doe">
+    </div>
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="tel" id="oi-phone" placeholder="e.g. 08012345678">
+    </div>
+    <div class="form-group">
+      <label>Delivery Location</label>
+      <input type="text" id="oi-location" placeholder="e.g. Port Harcourt, Rivers State">
+    </div>
+    <div class="form-group">
+      <label>Order Notes</label>
+      <textarea id="oi-notes" rows="2" placeholder="Anything else we should know?"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" id="oi-skip">Skip</button>
+      <button class="btn btn-whatsapp" id="oi-continue">Continue to WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<footer id="site-footer"></footer>
+
+<script src="doxy_catalog/catalog-data.js"></script>
+<script src="js/services/productService.js"></script>
+<script src="doxy_catalog/catalog-service.js"></script>
+<script src="js/services/categoryService.js"></script>
+<script src="js/services/cartService.js"></script>
+<script src="js/services/orderService.js"></script>
+<script src="js/services/settingsService.js"></script>
+<script src="js/services/authService.js"></script>
+<script src="js/whatsapp.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

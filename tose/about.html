@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Doxy Electricals</title>
+<meta name="description" content="Learn about Doxy Electricals, a supplier of quality electrical materials.">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<video id="background-video" autoplay loop muted playsinline aria-hidden="true">
+  <source src="./assets/spark-bg.mp4" type="video/mp4">
+</video>
+<div class="background-video-overlay" aria-hidden="true"></div>
+
+<header id="site-header"></header>
+
+<div class="page-header">
+  <div class="container"><h1>About Doxy Electricals</h1></div>
+</div>
+
+<main class="container section" style="max-width:800px;">
+  <p id="about-text" style="font-size:16px;line-height:1.8;"></p>
+  <p style="font-size:16px;line-height:1.8;">We supply electrical materials for homes, businesses, offices, electrical contractors, construction projects and commercial buildings — including cables, switches and sockets, circuit breakers, lighting, distribution boards, conduits and general wiring accessories.</p>
+  <p style="font-size:16px;line-height:1.8;">Browse our shop, or reach out on WhatsApp for help choosing the right materials for your project.</p>
+  <div style="margin-top:24px;">
+    <a href="shop.html" class="btn btn-primary">Shop Now</a>
+    <button class="btn btn-whatsapp" id="about-whatsapp-btn">Chat on WhatsApp</button>
+  </div>
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="js/services/productService.js"></script>
+<script src="js/services/categoryService.js"></script>
+<script src="js/services/cartService.js"></script>
+<script src="js/services/orderService.js"></script>
+<script src="js/services/settingsService.js"></script>
+<script src="js/services/authService.js"></script>
+<script src="js/whatsapp.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/cartPanel.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("about-text").textContent = window.SettingsService.getSettings().aboutUsDescription;
+  document.getElementById("about-whatsapp-btn").addEventListener("click", () => window.WhatsApp.generalEnquiry());
+});
+</script>
+</body>
+</html>

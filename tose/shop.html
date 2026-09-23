@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop Electrical Materials | Doxy Electricals</title>
+<meta name="description" content="Browse cables, switches, sockets, circuit breakers, lighting, conduits and more at Doxy Electricals.">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<video id="background-video" autoplay loop muted playsinline aria-hidden="true">
+  <source src="./assets/spark-bg.mp4" type="video/mp4">
+</video>
+<div class="background-video-overlay" aria-hidden="true"></div>
+
+<header id="site-header"></header>
+
+<div class="page-header">
+  <div class="container">
+    <h1>Shop Electrical Materials</h1>
+    <p>Browse our full range of quality electrical supplies.</p>
+  </div>
+</div>
+
+<main class="container section glass-section shop-section" style="padding-top:20px;">
+  <div class="shop-layout">
+    <aside class="filters-panel" id="categories">
+      <h4>Category</h4>
+      <div class="filter-group" id="filter-categories"></div>
+
+      <h4>Brand</h4>
+      <div class="filter-group" id="filter-brands"></div>
+
+      <h4>Availability</h4>
+      <div class="filter-group" id="filter-availability">
+        <label><input type="checkbox" name="availability" value="IN_STOCK"> In Stock</label>
+        <label><input type="checkbox" name="availability" value="LOW_STOCK"> Low Stock</label>
+        <label><input type="checkbox" name="availability" value="OUT_OF_STOCK"> Out of Stock</label>
+      </div>
+
+      <h4>Price Range</h4>
+      <div class="filter-group">
+        <input type="number" id="min-price" placeholder="Min price" style="margin-bottom:8px;">
+        <input type="number" id="max-price" placeholder="Max price">
+      </div>
+
+      <button class="btn btn-outline btn-sm btn-block" id="clear-filters">Clear Filters</button>
+    </aside>
+
+    <div>
+      <div class="toolbar">
+        <div class="result-count" id="result-count"></div>
+        <select id="sort-select">
+          <option value="featured">Featured</option>
+          <option value="newest">Newest</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+        </select>
+      </div>
+      <div class="product-grid" id="shop-grid"></div>
+      <div class="empty-state" id="empty-state" style="display:none;">
+        <div class="emoji">🔍</div>
+        <p id="empty-message">No products found. Try another search.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="doxy_catalog/catalog-data.js"></script>
+<script src="js/services/productService.js"></script>
+<script src="doxy_catalog/catalog-service.js"></script>
+<script src="js/services/categoryService.js"></script>
+<script src="js/services/cartService.js"></script>
+<script src="js/services/orderService.js"></script>
+<script src="js/services/settingsService.js"></script>
+<script src="js/services/authService.js"></script>
+<script src="js/whatsapp.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/cartPanel.js"></script>
+<script src="js/shop.js"></script>
+</body>
+</html>

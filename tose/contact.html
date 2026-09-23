@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Doxy Electricals</title>
+<meta name="description" content="Get in touch with Doxy Electricals by phone, WhatsApp, email or our contact form.">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<video id="background-video" autoplay loop muted playsinline aria-hidden="true">
+  <source src="./assets/spark-bg.mp4" type="video/mp4">
+</video>
+<div class="background-video-overlay" aria-hidden="true"></div>
+
+<header id="site-header"></header>
+
+<div class="page-header">
+  <div class="container"><h1>Contact Us</h1></div>
+</div>
+
+<main class="container section">
+  <div class="contact-grid">
+    <div class="info-card" id="contact-info"></div>
+
+    <div class="info-card">
+      <h3 style="margin-top:0;">Send Us a Message</h3>
+      <form id="contact-form">
+        <div class="form-group"><label>Name</label><input type="text" required id="c-name"></div>
+        <div class="form-group"><label>Phone</label><input type="tel" required id="c-phone"></div>
+        <div class="form-group"><label>Message</label><textarea rows="4" required id="c-message"></textarea></div>
+        <button class="btn btn-primary btn-block" type="submit">Send Message</button>
+      </form>
+      <p id="contact-success" style="display:none;color:var(--success);margin-top:12px;">Thanks! Your message details have been prepared — please send it on WhatsApp to complete.</p>
+    </div>
+  </div>
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="js/services/productService.js"></script>
+<script src="js/services/categoryService.js"></script>
+<script src="js/services/cartService.js"></script>
+<script src="js/services/orderService.js"></script>
+<script src="js/services/settingsService.js"></script>
+<script src="js/services/authService.js"></script>
+<script src="js/whatsapp.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/cartPanel.js"></script>
+<script src="js/contact.js"></script>
+</body>
+</html>
