@@ -123,20 +123,23 @@ button:active { transform: scale(.98); }
   position: relative; padding: 6px; border-radius: 6px;
 }
 .icon-btn:hover { background: rgba(255,255,255,.1); }
+.header-actions .cart-btn { background: #16a34a; color: var(--white); padding: 8px 10px; }
+.header-actions .cart-btn:hover { background: #15803d; }
+.header-actions .cart-btn .cart-count { background: var(--white); color: #166534; }
+.floating-cart {
+  position: fixed; top: 50%; left: 18px; z-index: 300;
+  display: inline-flex; align-items: center; gap: 7px; min-height: 52px;
+  padding: 10px 15px; border: 2px solid var(--white); border-radius: 999px;
+  background: #16a34a; color: var(--white); box-shadow: 0 10px 24px rgba(2, 6, 23, .3);
+  font-weight: 800; transform: translateY(-50%); transition: transform .12s ease, filter .15s ease, box-shadow .15s ease;
+}
+.floating-cart:hover { transform: translateY(calc(-50% - 3px)); box-shadow: 0 14px 30px rgba(2, 6, 23, .38); }
+.floating-cart-icon { font-size: 22px; line-height: 1; }
+.floating-cart-label { font-size: 13px; }
+.floating-cart-count {
+  position: static; width: 21px; height: 21px; background: var(--white); color: #166534; font-size: 11px;
+}
 .cart-count {
-  .floating-cart {
-    position: fixed; right: 20px; bottom: 22px; z-index: 300;
-    display: inline-flex; align-items: center; gap: 7px; min-height: 52px;
-    padding: 10px 15px; border: 2px solid var(--white); border-radius: 999px;
-    background: var(--accent); color: var(--navy); box-shadow: 0 10px 24px rgba(2, 6, 23, .3);
-    font-weight: 800; transition: transform .12s ease, filter .15s ease, box-shadow .15s ease;
-  }
-  .floating-cart:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(2, 6, 23, .38); }
-  .floating-cart-icon { font-size: 22px; line-height: 1; }
-  .floating-cart-label { font-size: 13px; }
-  .floating-cart-count {
-    position: static; width: 21px; height: 21px; background: var(--navy); color: var(--white); font-size: 11px;
-  }
   position: absolute; top: -4px; right: -4px; background: var(--secondary); color: var(--white);
   font-size: 10px; font-weight: 700; border-radius: 50%; width: 17px; height: 17px;
   display: flex; align-items: center; justify-content: center;

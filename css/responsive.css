@@ -45,7 +45,7 @@
 }
 
 @media (max-width: 480px) {
-    .floating-cart { right: 14px; bottom: 14px; min-height: 48px; padding: 9px 12px; }
+    .floating-cart { left: 10px; top: 50%; min-height: 48px; padding: 9px 12px; }
   .product-grid, .category-grid, .trust-grid { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: 1fr; }
   .cart-item { grid-template-columns: 60px 1fr; }
