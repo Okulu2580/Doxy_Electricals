@@ -29,7 +29,7 @@ function renderDoxyCatalogCards() {
       <h3>${category.name}</h3>
       <p>${doxyCategoryDescription(category.id)}</p>
       <div class="category-subcategory-preview">${category.subcategories.length} subcategories</div>
-      <button class="btn btn-outline btn-sm catalog-view-button" type="button" data-category-id="${category.id}">View Products</button>
+      <a class="btn btn-outline btn-sm catalog-view-button" href="category.html?category=${category.id}" data-category-id="${category.id}">View Products</a>
     </article>
   `).join("");
 }
@@ -109,6 +109,7 @@ function renderDoxySubcategoryPanel(categoryId) {
   panel.querySelectorAll(".subcategory-button").forEach((button) => button.addEventListener("click", () => selectSubcategory(button.dataset.subcategoryIndex)));
   panel.querySelector(".catalog-back-button").addEventListener("click", () => {
     if (history.state && history.state.categoryId) history.back();
+    else if (document.body.dataset.categoryPage === "true") window.location.href = "index.html#categories";
     else {
       history.replaceState(null, "", window.location.pathname + window.location.search);
       showDoxyCategoryIndex();
@@ -139,7 +140,12 @@ document.addEventListener("DOMContentLoaded", () => {
   window.DoxyCatalogService.syncProducts();
   renderDoxyCatalogCards();
   const root = document.getElementById("categories");
-  if (!root) return;
+  const initialCategory = new URLSearchParams(window.location.search).get("category")
+    || new URLSearchParams(window.location.hash.replace(/^#/, "")).get("category");
+  if (!root) {
+    if (initialCategory) renderDoxySubcategoryPanel(initialCategory);
+    return;
+  }
   root.addEventListener("click", (event) => {
     const categoryButton = event.target.closest(".catalog-view-button");
     if (categoryButton) openDoxyCategory(categoryButton.dataset.categoryId);
@@ -151,8 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (categoryId) renderDoxySubcategoryPanel(categoryId);
     else showDoxyCategoryIndex();
   });
-  const initialCategory = new URLSearchParams(window.location.hash.replace(/^#/, "")).get("category");
-  if (initialCategory) renderDoxySubcategoryPanel(initialCategory);
+  const pageCategory = new URLSearchParams(window.location.hash.replace(/^#/, "")).get("category");
+  if (pageCategory) renderDoxySubcategoryPanel(pageCategory);
 });
 
 document.addEventListener("products:changed", () => {
